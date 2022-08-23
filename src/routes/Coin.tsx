@@ -219,7 +219,7 @@ const Coin = () => {
             </Tab>
           </Tabs>
           <div>
-            <Outlet />
+            <Outlet context={coinId} />
           </div>
         </>
       )}

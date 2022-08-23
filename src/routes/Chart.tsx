@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import { fetchCoinHistory } from "../api";
 import ApexChart from "react-apexcharts";
+import { useOutletContext } from "react-router-dom";
 interface ChartProps {
   coinId?: string;
 }
@@ -16,11 +17,11 @@ interface iData {
   market_cap: number;
 }
 
-function Chart({ coinId }: ChartProps) {
+const Chart = () => {
+  const coinId = useOutletContext<ChartProps["coinId"]>();
   const { isLoading, data } = useQuery<iData[]>(["ohlcv", coinId], () =>
     fetchCoinHistory(coinId!)
   );
-  console.log(data?.map((time) => time.time_close));
   return (
     <div>
       {isLoading ? (
@@ -84,6 +85,6 @@ function Chart({ coinId }: ChartProps) {
       )}
     </div>
   );
-}
+};
 
 export default Chart;
