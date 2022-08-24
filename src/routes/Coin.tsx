@@ -25,6 +25,9 @@ const Header = styled.header`
   justify-content: center;
   align-items: center;
   font-size: 48px;
+  a {
+    margin-right: 10px;
+  }
 `;
 const Overview = styled.div`
   display: flex;
@@ -32,6 +35,7 @@ const Overview = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px 20px;
   border-radius: 10px;
+  margin-bottom: 10px;
 `;
 const OverviewItem = styled.div`
   display: flex;
@@ -176,7 +180,7 @@ const Coin = () => {
         </title>
       </Helmet>
       <Header>
-        <a href="/">Home</a>
+        <a href="/">&larr;</a>
         <Title>
           {state?.name ? state.name : loading ? "loading..." : infoData?.name}
         </Title>
@@ -192,14 +196,16 @@ const Coin = () => {
             </OverviewItem>
             <OverviewItem>
               <span>Symbol:</span>
-              <span>${infoData?.symbol}</span>
+              <span>{infoData?.symbol}</span>
             </OverviewItem>
             <OverviewItem>
               <span>Price:</span>
-              <span>{tickersData?.quotes.USD.price}</span>
+              <span>${tickersData?.quotes.USD.price.toFixed(3)}</span>
             </OverviewItem>
           </Overview>
-          <Description>{infoData?.description}</Description>
+          <Overview>
+            <Description>{infoData?.description}</Description>
+          </Overview>
           <Overview>
             <OverviewItem>
               <span>Total Suply:</span>
