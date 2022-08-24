@@ -180,7 +180,6 @@ const Coin = () => {
         </title>
       </Helmet>
       <Header>
-        <a href="/">&larr;</a>
         <Title>
           {state?.name ? state.name : loading ? "loading..." : infoData?.name}
         </Title>
