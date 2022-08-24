@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/typescript-cointracker/static/js/main.a42ffe3a.js",
+    "main.js": "/typescript-cointracker/static/js/main.39423609.js",
     "index.html": "/typescript-cointracker/index.html",
-    "main.a42ffe3a.js.map": "/typescript-cointracker/static/js/main.a42ffe3a.js.map"
+    "main.39423609.js.map": "/typescript-cointracker/static/js/main.39423609.js.map"
   },
   "entrypoints": [
-    "static/js/main.a42ffe3a.js"
+    "static/js/main.39423609.js"
   ]
 }
