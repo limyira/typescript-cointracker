@@ -20,8 +20,8 @@ const Header = styled.header`
 const CoinList = styled.ul``;
 const Coin = styled.li`
   display: flex;
-  background-color: white;
-  color: ${(props) => props.theme.bgColor};
+  background-color: ${(props) => props.theme.overColor};
+  color: ${(props) => props.theme.textColor};
   margin-bottom: 10px;
   border-radius: 15px;
   padding: 10px;

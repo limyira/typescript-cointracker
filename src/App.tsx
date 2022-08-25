@@ -1,7 +1,14 @@
-import React, { useState } from "react";
-import { createGlobalStyle } from "styled-components";
+import React, { useEffect, useState } from "react";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 import Router from "./Router";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { darkTheme, lightTheme } from "./theme";
+import { isDarkAtom } from "./atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon } from "@fortawesome/free-regular-svg-icons";
+import { faSun } from "@fortawesome/free-regular-svg-icons";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
@@ -66,13 +73,41 @@ a {
 }
 
 `;
+const ModeBtn = styled.button`
+  border: 0px none;
+  background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
+  padding: 0px;
+  position: fixed;
+  z-index: 99999;
+  display: inline-flex;
+  font-size: 1rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  width: fit-content;
+  left: 0px;
+  color: ${(props) => props.theme.textColor};
+`;
 
 function App() {
+  const isDark = useRecoilValue(isDarkAtom);
+  const setDark = useSetRecoilState(isDarkAtom);
+  const changeTema = () => setDark((prev) => !prev);
+
   return (
     <>
-      <GlobalStyle />
-      <Router />
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <ModeBtn onClick={changeTema}>
+          {isDark ? (
+            <FontAwesomeIcon icon={faSun} />
+          ) : (
+            <FontAwesomeIcon icon={faMoon} />
+          )}
+        </ModeBtn>
+
+        <GlobalStyle />
+        <Router />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </ThemeProvider>
     </>
   );
 }

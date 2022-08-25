@@ -32,7 +32,7 @@ const Header = styled.header`
 const Overview = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.overColor};
   padding: 10px 20px;
   border-radius: 10px;
   margin-bottom: 10px;
@@ -129,7 +129,7 @@ const Tab = styled.span<{ isActive: boolean }>`
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 400;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.overColor};
   padding: 7px 0px;
   border-radius: 10px;
   color: ${(props) =>
@@ -155,6 +155,7 @@ const Coin = () => {
     useQuery<pricedataProps>(["tickers", coinId], () =>
       fetchCoinTickers(coinId!)
     );
+  console.log(priceMatch);
   // const [loading, setLoading] = useState(true);
   // const [info, setInfo] = useState<InfoDataProps>();
   // const [priceInfo, setPriceInfo] = useState<pricedataProps>();

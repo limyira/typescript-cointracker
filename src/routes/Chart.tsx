@@ -1,7 +1,10 @@
 import { useQuery } from "react-query";
 import { fetchCoinHistory } from "../api";
 import ApexChart from "react-apexcharts";
-import { useOutletContext } from "react-router-dom";
+import { Navigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../atoms";
 interface ChartProps {
   coinId?: string;
 }
@@ -18,10 +21,12 @@ interface iData {
 }
 
 const Chart = () => {
+  const isDark = useRecoilValue(isDarkAtom);
   const coinId = useOutletContext<ChartProps["coinId"]>();
   const { isLoading, data } = useQuery<iData[]>(["ohlcv", coinId], () =>
     fetchCoinHistory(coinId!)
   );
+
   return (
     <div>
       {isLoading ? (
@@ -41,7 +46,7 @@ const Chart = () => {
           ]}
           options={{
             theme: {
-              mode: "dark",
+              mode: isDark ? "dark" : "light",
             },
             chart: {
               type: "candlestick",
@@ -64,7 +69,7 @@ const Chart = () => {
               categories: data?.map((price) => price.time_close),
               labels: {
                 style: {
-                  colors: "white",
+                  colors: isDark ? "white" : "black",
                 },
               },
             },

@@ -54,7 +54,7 @@ const GridSpan = styled.span`
   font-size: 12px;
   font-weight: 400;
   padding: 7px 0px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.overColor};
   border-radius: 10px;
 `;
 const Brr = styled.br`
